@@ -1,0 +1,9 @@
+Exercise 4
+
+1. Move the table row to its own component.
+
+2. Define the graphql fragment for the data of the component.
+
+3. Connect the fragment to the graphql queries in the Relay app.
+
+4. Call the component, passing in the data.

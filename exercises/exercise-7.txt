@@ -1,0 +1,12 @@
+Exercise #7
+
+1. Add an edit row component which allows a car to be edited.
+
+2. Configure the table to allow a row to switch between edit mode and view mode.
+
+3. In view mode, a row should have an edit button, and a delete button. The edit button switches the row to edit mode, the delete button deletes the car.
+
+4. In edit more, a row should have a save button and a cancel button. The save button will save the data to server and switch to view mode. The cancel button cancels the changes, and switches to view mode.
+
+5. Add the code to the GraphQL server to support the car mutations.
+

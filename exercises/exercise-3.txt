@@ -1,0 +1,11 @@
+Exercise 2
+
+1. Create a car table fragment container.
+
+2. Define the car graphql query.
+
+3. Pull in car table query fragment into the query
+renderer
+
+4. Remove the car table from query renderer, and reference
+the car table fragment container, passing in the viewer.

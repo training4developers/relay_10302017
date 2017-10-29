@@ -1,0 +1,6 @@
+Exercise 2
+
+1. Update the renderer query to pull in the car connection data
+including the edge data and the node data
+
+2. Display a table of cars.

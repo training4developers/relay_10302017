@@ -8,20 +8,20 @@ Eric Greene - [http://t4d.io](http://t4d.io) - [LinkedIn](https://www.linkedin.c
 
 Class:
 
-- Monday - Wednesday, 9am to 5pm PDT (probably end at 4:40pm with questions until 5pm)
+- Monday - Wednesday, 9:15am to 4:30pm PDT (with questions until 5pm)
 
 Breaks:
 
-- Morning: 10:25am - 10:35am
+- Morning: 10:30am - 10:40am
 - Lunch: Noon to 1pm
-- Afternoon #1: 2:15pm - 2:25pm
-- Afternoon #2: 3:40pm - 3:50pm
+- Afternoon #1: 2:05pm - 2:15pm
+- Afternoon #2: 3:20pm - 3:30pm
 
 ## Course Outline
 
-- Day 1 - Intro to GraphQL, Relay Overview, Relay Queries
+- Day 1 - Relay Overview, Relay Queries
 - Day 2 - Relay Queries, Relay Mutations
-- Day 3 - Relay Mutations
+- Day 3 - Relay Mutations, Project
 
 ## Links
 

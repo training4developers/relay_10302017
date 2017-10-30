@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cf44b88e5664df3cdc83d069c97f4114
+ * @relayHash 7fd765fc2b13280c70d59798768e214e
  */
 
 /* eslint-disable */
@@ -12,18 +12,6 @@ import type {ConcreteBatch} from 'relay-runtime';
 export type homeQueryResponse = {|
   +viewer: ?{|
     +id: string;
-    +widgets: ?{|
-      +edges: ?$ReadOnlyArray<?{|
-        +node: ?{|
-          +id: string;
-          +name: ?string;
-          +description: ?string;
-          +color: ?string;
-          +size: ?string;
-          +quantity: ?number;
-        |};
-      |}>;
-    |};
   |};
 |};
 */
@@ -33,16 +21,20 @@ export type homeQueryResponse = {|
 query homeQuery {
   viewer {
     id
-    widgets {
-      edges {
-        node {
-          id
-          name
-          description
-          color
-          size
-          quantity
-        }
+    ...widgetTable_viewer
+  }
+}
+
+fragment widgetTable_viewer on Viewer {
+  widgets {
+    edges {
+      node {
+        id
+        name
+        description
+        color
+        size
+        quantity
       }
     }
   }
@@ -72,79 +64,9 @@ const batch /*: ConcreteBatch*/ = {
             "storageKey": null
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "WidgetsConnection",
-            "name": "widgets",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "WidgetsEdge",
-                "name": "edges",
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Widget",
-                    "name": "node",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "id",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "name",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "description",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "color",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "size",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "quantity",
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "widgetTable_viewer",
+            "args": null
           }
         ],
         "storageKey": null
@@ -257,7 +179,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query homeQuery {\n  viewer {\n    id\n    widgets {\n      edges {\n        node {\n          id\n          name\n          description\n          color\n          size\n          quantity\n        }\n      }\n    }\n  }\n}\n"
+  "text": "query homeQuery {\n  viewer {\n    id\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

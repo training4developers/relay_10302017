@@ -8,6 +8,8 @@ import {
   createBrowserRouter, makeRouteConfig, Route, Link
 } from 'found';
 
+import { Home } from './components/home';
+
 class AppPage extends React.Component {
 
   static propTypes = {
@@ -30,7 +32,7 @@ class AppPage extends React.Component {
 const BrowserRouter = createBrowserRouter({
   routeConfig: makeRouteConfig(
     <Route path="/" Component={AppPage}>
-      <Route Component={null} />
+      <Route Component={Home} />
     </Route>
   ),
 });

@@ -17,6 +17,13 @@ export class Home extends React.Component {
           query homeQuery {
             viewer {
               id
+              widgets {
+                edges {
+                  node {
+                    id
+                  }
+                }
+              }
               ...widgetTable_viewer
             }
           }
@@ -25,14 +32,15 @@ export class Home extends React.Component {
         render={ ({ error, props, retry }) => {
 
           if (props) {
-            return <WidgetTableContainer viewer={props.viewer} />;
+            return <div>
+              <div>Widget Count: {props.viewer.widgets.edges.length}</div>
+              <WidgetTableContainer viewer={props.viewer} />
+            </div>;
           } else {
             return <div>Loading...</div>;
           }
 
-        } }
-      
-       />
+        } } />
     </section>;
 
   }

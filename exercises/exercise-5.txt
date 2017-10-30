@@ -1,7 +1,0 @@
-Exercise 5
-
-1. Create GraphQL endpoint for adding a car
-
-2. Add a car form to the web app
-
-3. Connect the car form to the GrapQL endpoint using Relay

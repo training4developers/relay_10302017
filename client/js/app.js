@@ -8,8 +8,6 @@ import {
   createBrowserRouter, makeRouteConfig, Route, Link
 } from 'found';
 
-import { HomePage } from './components/home-page'; 
-
 class AppPage extends React.Component {
 
   static propTypes = {
@@ -21,10 +19,6 @@ class AppPage extends React.Component {
       <header>
         <h1>Sample React/GraphQL/Relay App</h1>
       </header>
-      <nav>
-        <ul>
-        </ul>
-      </nav>
       {this.props.children}
       <footer>
         <small>&copy; 2017, A Cool Company, Inc.</small>
@@ -36,7 +30,7 @@ class AppPage extends React.Component {
 const BrowserRouter = createBrowserRouter({
   routeConfig: makeRouteConfig(
     <Route path="/" Component={AppPage}>
-      <Route Component={HomePage} />
+      <Route Component={null} />
     </Route>
   ),
 });

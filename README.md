@@ -1,4 +1,4 @@
-# Welcome to Introduction to GraphQL/Relay Class
+# Welcome to Introduction to Relay Modern Class
 
 ## Instructor
 

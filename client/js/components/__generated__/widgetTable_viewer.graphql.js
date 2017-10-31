@@ -24,15 +24,26 @@ export type widgetTable_viewer = {|
 const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": null,
+        "cursor": null,
+        "direction": "forward",
+        "path": [
+          "widgets"
+        ]
+      }
+    ]
+  },
   "name": "widgetTable_viewer",
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": null,
+      "alias": "widgets",
       "args": null,
       "concreteType": "WidgetsConnection",
-      "name": "widgets",
+      "name": "__WidgetTable_widgets_connection",
       "plural": false,
       "selections": [
         {

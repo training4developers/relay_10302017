@@ -2,8 +2,10 @@ import { GraphQLObjectType } from 'graphql';
 import { globalIdField, connectionArgs, connectionFromArray } from 'graphql-relay';
 
 import { widgetConnectionType } from '../connections/widgets';
+import { carConnectionType } from '../connections/cars';
 import { WidgetData } from '../models/widget-data';
-import { Widget, Viewer } from '../models/graphql-models';
+import { CarData } from '../models/car-data';
+import { Widget, Viewer, Car } from '../models/graphql-models';
 import { nodeInterface } from '../utils/node-definitions';
 import { registerType } from '../utils/resolve-type';
 
@@ -22,6 +24,18 @@ export const viewerType = new GraphQLObjectType({
         return widgetData.all().then(widgets => {
           const widgetModels = widgets.map(w => Object.assign(new Widget(), w));
           return connectionFromArray(widgetModels, args);
+        });
+      },
+    },
+    cars: {
+      type: carConnectionType,
+      description: 'get all of the cars',
+      args: connectionArgs,
+      resolve: (_, args, { baseUrl }) => {
+        const carData = new CarData(baseUrl);
+        return carData.all().then(cars => {
+          const carModels = cars.map(c => Object.assign(new Car(), c));
+          return connectionFromArray(carModels, args);
         });
       },
     },

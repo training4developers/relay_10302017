@@ -5,7 +5,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 export class WidgetTable extends React.Component {
 
   render() {
-    return <table>
+    return <table className='table table-striped'>
       <thead>
         <tr>
           <th>Name</th>
@@ -13,6 +13,7 @@ export class WidgetTable extends React.Component {
           <th>Size</th>
           <th>Color</th>
           <th>Quantity</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -24,10 +25,16 @@ export class WidgetTable extends React.Component {
               <td>{color}</td>
               <td>{size}</td>
               <td>{quantity}</td>
+              <td></td>
             </tr>
           )
         )}
       </tbody>
+      <tfoot>
+        <tr>
+          <td colSpan="6">Widgets Count: {this.props.viewer.widgets.edges.length}</td>
+        </tr>
+      </tfoot>
     </table>;
   }
 }

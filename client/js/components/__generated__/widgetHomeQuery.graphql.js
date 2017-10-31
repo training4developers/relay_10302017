@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e3b1ad96e36eb0d08a6e6bdffe6be3a2
+ * @relayHash 3629e54ece5fa6bb6ff32ff13cdd0ac5
  */
 
 /* eslint-disable */
@@ -9,32 +9,18 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type homeQueryResponse = {|
+export type widgetHomeQueryResponse = {|
   +viewer: ?{|
     +id: string;
-    +widgets: ?{|
-      +edges: ?$ReadOnlyArray<?{|
-        +node: ?{|
-          +id: string;
-        |};
-      |}>;
-    |};
   |};
 |};
 */
 
 
 /*
-query homeQuery {
+query widgetHomeQuery {
   viewer {
     id
-    widgets {
-      edges {
-        node {
-          id
-        }
-      }
-    }
     ...widgetTable_viewer
   }
 }
@@ -60,7 +46,7 @@ const batch /*: ConcreteBatch*/ = {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "homeQuery",
+    "name": "widgetHomeQuery",
     "selections": [
       {
         "kind": "LinkedField",
@@ -78,46 +64,6 @@ const batch /*: ConcreteBatch*/ = {
             "storageKey": null
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "WidgetsConnection",
-            "name": "widgets",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "WidgetsEdge",
-                "name": "edges",
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Widget",
-                    "name": "node",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "id",
-                        "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          },
-          {
             "kind": "FragmentSpread",
             "name": "widgetTable_viewer",
             "args": null
@@ -131,11 +77,11 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "homeQuery",
+  "name": "widgetHomeQuery",
   "query": {
     "argumentDefinitions": [],
     "kind": "Root",
-    "name": "homeQuery",
+    "name": "widgetHomeQuery",
     "operation": "query",
     "selections": [
       {
@@ -233,7 +179,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query homeQuery {\n  viewer {\n    id\n    widgets {\n      edges {\n        node {\n          id\n        }\n      }\n    }\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
+  "text": "query widgetHomeQuery {\n  viewer {\n    id\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

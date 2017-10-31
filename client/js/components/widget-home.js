@@ -2,7 +2,6 @@ import * as React from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
 
 import { environment } from '../environment';
-
 import { WidgetTableContainer } from './widget-table';
 
 export class WidgetHome extends React.Component {

@@ -1,0 +1,16 @@
+Exercise 7
+
+1. Create a car form component with the following form fields:
+
+Make
+Model
+Year
+Color
+Price
+
+2. When clicking 'Save', call a save car function passed via props. Pass a car object to the
+save function.
+
+3. Write a Relay mutation function for saving car using the insert mutation.
+
+4. Using the application, save a new car.

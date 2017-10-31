@@ -1,0 +1,7 @@
+Exercise 5
+
+1. Implement error checking in the car query renderer.
+
+2. Display a retry link if there is an error. When clicked, run the retry button.
+
+3. Change the network fetch call to break the fetch and reload.

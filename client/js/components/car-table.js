@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { createFragmentContainer, graphql } from 'react-relay';
 
 export class CarTable extends React.Component {

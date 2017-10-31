@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { createFragmentContainer, graphql } from 'react-relay';
 
 export class WidgetViewRow extends React.Component {
@@ -10,7 +9,8 @@ export class WidgetViewRow extends React.Component {
       <td>{this.props.widget.description}</td>
       <td>{this.props.widget.color}</td>
       <td>{this.props.widget.size}</td>
-      <td>{this.props.widget.price}</td>
+      <td>{this.props.widget.quantity}</td>
+      <td></td>
     </tr>;
   }
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
 
 import { environment } from '../environment';
-
 import { CarTableContainer } from './car-table';
 
 export class CarHome extends React.Component {

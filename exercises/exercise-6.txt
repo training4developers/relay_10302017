@@ -1,0 +1,5 @@
+Exercise 6
+
+1. Write the insert car mutation.
+
+2. Verify you can insert from the GraphQL client.

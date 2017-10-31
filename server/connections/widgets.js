@@ -1,3 +1,4 @@
+import { GraphQLInt } from 'graphql';
 import { connectionDefinitions } from 'graphql-relay';
 
 import { widgetType } from '../types/widget-type';

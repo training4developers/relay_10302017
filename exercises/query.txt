@@ -1,0 +1,28 @@
+mutation insertWidgetMutation($input: InsertWidgetInput!) {
+  insertWidget(input: $input) {
+    viewer {
+      id
+    }
+    widgetEdge {
+      cursor
+      node {
+        id
+        name
+      }
+    }
+    clientMutationId
+  }
+}
+
+{
+  "input": {
+  	"widget": {
+      "name": "test",
+      "description": "test desc",
+      "color": "blue",
+      "size": "small",
+      "quantity": 12
+    },
+    "clientMutationId": "1"
+  }
+}

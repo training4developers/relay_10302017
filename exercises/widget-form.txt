@@ -1,0 +1,9 @@
+1. Named WidgetForm
+
+2. Will collect name, description, color, size, quantity
+and store those value on a state object (a state object
+internal to form)
+
+3. A button with a label of 'Save', when clicked, will
+invoked function passed in props name onSubmitWidget
+passing in the data collected on the state object

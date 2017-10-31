@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3fa0dde5871bc1db39364af5ffc2111b
+ * @relayHash 4d0e82a8b0804221b9a0cf1291725264
  */
 
 /* eslint-disable */
@@ -20,6 +20,9 @@ export type deleteWidgetMutationResponse = {|
   +deleteWidget: ?{|
     +viewer: ?{|
       +id: string;
+      +widgets: ?{|
+        +totalCount: ?number;
+      |};
     |};
     +widget: ?{|
       +id: string;
@@ -41,6 +44,9 @@ mutation deleteWidgetMutation(
   deleteWidget(input: $input) {
     viewer {
       id
+      widgets {
+        totalCount
+      }
     }
     widget {
       id
@@ -96,6 +102,24 @@ const batch /*: ConcreteBatch*/ = {
                 "alias": null,
                 "args": null,
                 "name": "id",
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "WidgetsConnection",
+                "name": "widgets",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalCount",
+                    "storageKey": null
+                  }
+                ],
                 "storageKey": null
               }
             ],
@@ -206,6 +230,24 @@ const batch /*: ConcreteBatch*/ = {
                 "args": null,
                 "name": "id",
                 "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "WidgetsConnection",
+                "name": "widgets",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalCount",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -268,7 +310,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation deleteWidgetMutation(\n  $input: DeleteWidgetInput!\n) {\n  deleteWidget(input: $input) {\n    viewer {\n      id\n    }\n    widget {\n      id\n      name\n      description\n      color\n      size\n      quantity\n    }\n  }\n}\n"
+  "text": "mutation deleteWidgetMutation(\n  $input: DeleteWidgetInput!\n) {\n  deleteWidget(input: $input) {\n    viewer {\n      id\n      widgets {\n        totalCount\n      }\n    }\n    widget {\n      id\n      name\n      description\n      color\n      size\n      quantity\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

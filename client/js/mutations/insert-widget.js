@@ -66,8 +66,8 @@ export const insertWidget = (environment, viewerId, widget) => {
           return;
         }
         const widgetEdge = payload.getLinkedRecord('widgetEdge');
-
-        const totalCount = payload.getLinkedRecord('viewer').getLinkedRecord('widgets').getValue('totalCount');
+        const totalCount = payload.getLinkedRecord('viewer')
+          .getLinkedRecord('widgets').getValue('totalCount');
 
         sharedUpdater(source, widgetEdge, viewerId, totalCount);
       },

@@ -10,7 +10,10 @@ export class WidgetViewRow extends React.Component {
       <td>{this.props.widget.color}</td>
       <td>{this.props.widget.size}</td>
       <td>{this.props.widget.quantity}</td>
-      <td></td>
+      <td>
+        <button type="button" onClick={() =>
+          this.props.onDeleteWidget(this.props.widget.id)}>Delete</button>
+      </td>
     </tr>;
   }
 

@@ -19,7 +19,9 @@ export class WidgetTable extends React.Component {
       </thead>
       <tbody>
         {this.props.viewer.widgets.edges.map(
-          ({ node: widget }) => <WidgetViewRowContainer key={widget.id} widget={widget} />
+          ({ node: widget }) => <WidgetViewRowContainer
+            key={widget.id} widget={widget}
+            onDeleteWidget={this.props.onDeleteWidget} />
         )}
       </tbody>
       <tfoot>

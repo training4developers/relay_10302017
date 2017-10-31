@@ -5,6 +5,7 @@ import { environment } from '../environment';
 import { WidgetTableContainer } from './widget-table';
 import { WidgetForm } from './widget-form';
 import { insertWidget as relayInsertWidget } from '../mutations/insert-widget';
+import { deleteWidget as relayDeleteWidget } from '../mutations/delete-widget';
 
 export class WidgetHome extends React.Component {
 
@@ -36,6 +37,14 @@ export class WidgetHome extends React.Component {
             );
           };
 
+          const reactDeleteWidget = widgetId => {
+            relayDeleteWidget(
+              environment,
+              props.viewer.id,
+              widgetId,
+            );
+          };
+
           if (error) {
             return <div>
               <div>Error... {error.message}</div>
@@ -43,7 +52,8 @@ export class WidgetHome extends React.Component {
             </div>;
           } else if (props) {
             return <div>
-              <WidgetTableContainer viewer={props.viewer} />
+              <WidgetTableContainer viewer={props.viewer}
+                onDeleteWidget={reactDeleteWidget} />
               <WidgetForm onSubmitWidget={reactInsertWidget} />
             </div>;
           } else {

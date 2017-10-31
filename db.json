@@ -67,6 +67,14 @@
       "size": "tiny",
       "quantity": 13,
       "ownerId": 3
+    },
+    {
+      "name": "test",
+      "description": "test desc",
+      "color": "blue",
+      "size": "small",
+      "quantity": 12,
+      "id": 5
     }
   ],
   "people": [

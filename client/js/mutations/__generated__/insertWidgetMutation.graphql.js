@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5665c197590fad0434e95301051290c9
+ * @relayHash c2da19dae32120ad80096f4cd11bdfc7
  */
 
 /* eslint-disable */
@@ -26,6 +26,9 @@ export type insertWidgetMutationResponse = {|
   +insertWidget: ?{|
     +viewer: ?{|
       +id: string;
+      +widgets: ?{|
+        +totalCount: ?number;
+      |};
     |};
     +widgetEdge: ?{|
       +cursor: string;
@@ -51,6 +54,9 @@ mutation insertWidgetMutation(
   insertWidget(input: $input) {
     viewer {
       id
+      widgets {
+        totalCount
+      }
     }
     widgetEdge {
       cursor
@@ -110,6 +116,24 @@ const batch /*: ConcreteBatch*/ = {
                 "alias": null,
                 "args": null,
                 "name": "id",
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "WidgetsConnection",
+                "name": "widgets",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalCount",
+                    "storageKey": null
+                  }
+                ],
                 "storageKey": null
               }
             ],
@@ -245,6 +269,24 @@ const batch /*: ConcreteBatch*/ = {
                 "args": null,
                 "name": "id",
                 "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "WidgetsConnection",
+                "name": "widgets",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "totalCount",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -332,7 +374,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation insertWidgetMutation(\n  $input: InsertWidgetInput!\n) {\n  insertWidget(input: $input) {\n    viewer {\n      id\n    }\n    widgetEdge {\n      cursor\n      node {\n        __typename\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
+  "text": "mutation insertWidgetMutation(\n  $input: InsertWidgetInput!\n) {\n  insertWidget(input: $input) {\n    viewer {\n      id\n      widgets {\n        totalCount\n      }\n    }\n    widgetEdge {\n      cursor\n      node {\n        __typename\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

@@ -6,6 +6,9 @@ mutation insertWidgetMutation($input: InsertWidgetInput!) {
   insertWidget(input: $input) {
     viewer {
       id
+      widgets {
+        totalCount
+      }
     }
     widgetEdge {
       cursor
@@ -24,11 +27,17 @@ mutation insertWidgetMutation($input: InsertWidgetInput!) {
 `;
 
 // performs the actual update to the graph on the client
-const sharedUpdater = (source, widgetEdge, viewerId) => {
+const sharedUpdater = (source, widgetEdge, viewerId, totalCount) => {
 
   const viewerProxy = source.get(viewerId);
   const conn = ConnectionHandler.getConnection(viewerProxy, 'WidgetTable_widgets');
   ConnectionHandler.insertEdgeAfter(conn, widgetEdge);
+
+  // update the total count
+  if (!totalCount) {
+    totalCount = conn.getValue('totalCount') + 1;
+  }
+  conn.setValue(totalCount, 'totalCount');
 };
 
 let clientMutationId = 0;
@@ -58,7 +67,9 @@ export const insertWidget = (environment, viewerId, widget) => {
         }
         const widgetEdge = payload.getLinkedRecord('widgetEdge');
 
-        sharedUpdater(source, widgetEdge, viewerId);
+        const totalCount = payload.getLinkedRecord('viewer').getLinkedRecord('widgets').getValue('totalCount');
+
+        sharedUpdater(source, widgetEdge, viewerId, totalCount);
       },
 
       // runs before the server operation, and makes it appear as though the

@@ -23,6 +23,7 @@ mutation insertWidgetMutation($input: InsertWidgetInput!) {
 }
 `;
 
+// performs the actual update to the graph on the client
 const sharedUpdater = (source, widgetEdge, viewerId) => {
 
   const viewerProxy = source.get(viewerId);
@@ -39,6 +40,7 @@ export const insertWidget = (environment, viewerId, widget) => {
     commitMutation(environment, {
       mutation,
 
+      // query variables for the mutation defined above
       variables: {
         input: {
           widget,
@@ -46,6 +48,8 @@ export const insertWidget = (environment, viewerId, widget) => {
         },
       },
 
+      // after the server update is successful, and it updates any nodes
+      // added during the optimistic update
       updater: source => {
 
         const payload = source.getRootField('insertWidget');
@@ -57,6 +61,8 @@ export const insertWidget = (environment, viewerId, widget) => {
         sharedUpdater(source, widgetEdge, viewerId);
       },
 
+      // runs before the server operation, and makes it appear as though the
+      // was saved
       optimisticUpdater: source => {
 
         const nodeId = 'client:newWidget:' + String(clientMutationId++);
@@ -77,12 +83,15 @@ export const insertWidget = (environment, viewerId, widget) => {
         sharedUpdater(source, widgetEdge, viewerId);
       },
 
+      // the success function when mutation is successful
       onCompleted: (results, errors) => {
         if (errors) {
           reject(errors);
         }
         resolve(results);
       },
+
+      // the error function when the mutation is unsuccessful
       onError: errors => reject(errors),
     });
 

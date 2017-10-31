@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
+import { CarViewRowContainer } from './car-view-row';
+
 export class CarTable extends React.Component {
 
   render() {
@@ -17,16 +19,7 @@ export class CarTable extends React.Component {
       </thead>
       <tbody>
         {this.props.viewer.cars.edges.map(
-          ({ node: { id, make, model, year, color, price } }) => (
-            <tr key={id}>
-              <td>{make}</td>
-              <td>{model}</td>
-              <td>{year}</td>
-              <td>{color}</td>
-              <td>{price}</td>
-              <td></td>
-            </tr>
-          )
+          ({ node: car }) => (<CarViewRowContainer key={car.id} car={car} carMake={car} />)
         )}
       </tbody>
       <tfoot>
@@ -44,11 +37,7 @@ export const CarTableContainer = createFragmentContainer(CarTable, graphql`
       edges {
         node {
           id
-          make
-          model
-          year
-          color
-          price
+          ...carViewRow_car
         }
       }
     }

@@ -1,7 +1,7 @@
 // standard example of a query operation for connecting
 // Relay to GraphQL
 export const fetchQuery = (operation, variables) => {
-  return fetch('/graphql', {
+  return fetch('/wedgraphql', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'

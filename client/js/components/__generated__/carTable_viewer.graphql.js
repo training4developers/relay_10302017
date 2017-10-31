@@ -13,11 +13,6 @@ export type carTable_viewer = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string;
-        +make: ?string;
-        +model: ?string;
-        +year: ?number;
-        +color: ?string;
-        +price: ?number;
       |};
     |}>;
   |};
@@ -63,39 +58,9 @@ const fragment /*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "make",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "model",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "year",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "color",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "price",
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "carViewRow_car",
+                  "args": null
                 }
               ],
               "storageKey": null

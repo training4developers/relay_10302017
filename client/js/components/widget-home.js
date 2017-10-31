@@ -26,7 +26,12 @@ export class WidgetHome extends React.Component {
         variables={{}}
         render={ ({ error, props, retry }) => {
 
-          if (props) {
+          if (error) {
+            return <div>
+              <div>Error... {error.message}</div>
+              <a onClick={() => retry()}>Retry</a>
+            </div>;
+          } else if (props) {
             return <WidgetTableContainer viewer={props.viewer} />;
           } else {
             return <div>Loading...</div>;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash da3913f28f73db9d5e3790d09ee9bc8e
+ * @relayHash 000c7b656c9600e53bbea5315c66afd3
  */
 
 /* eslint-disable */
@@ -30,14 +30,19 @@ fragment carTable_viewer on Viewer {
     edges {
       node {
         id
-        make
-        model
-        year
-        color
-        price
+        ...carViewRow_car
       }
     }
   }
+}
+
+fragment carViewRow_car on Car {
+  id
+  make
+  model
+  year
+  color
+  price
 }
 */
 
@@ -179,7 +184,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query carHomeQuery {\n  viewer {\n    id\n    ...carTable_viewer\n  }\n}\n\nfragment carTable_viewer on Viewer {\n  cars {\n    edges {\n      node {\n        id\n        make\n        model\n        year\n        color\n        price\n      }\n    }\n  }\n}\n"
+  "text": "query carHomeQuery {\n  viewer {\n    id\n    ...carTable_viewer\n  }\n}\n\nfragment carTable_viewer on Viewer {\n  cars {\n    edges {\n      node {\n        id\n        ...carViewRow_car\n      }\n    }\n  }\n}\n\nfragment carViewRow_car on Car {\n  id\n  make\n  model\n  year\n  color\n  price\n}\n"
 };
 
 module.exports = batch;

@@ -24,7 +24,7 @@ export class WidgetTable extends React.Component {
       </tbody>
       <tfoot>
         <tr>
-          <td colSpan="6">Widgets Count: {this.props.viewer.widgets.edges.length}</td>
+          <td colSpan="6">Widgets Count: {this.props.viewer.widgets.totalCount}</td>
         </tr>
       </tfoot>
     </table>;
@@ -40,6 +40,7 @@ export const WidgetTableContainer = createFragmentContainer(WidgetTable, graphql
           ...widgetViewRow_widget
         }
       }
+      totalCount
     }
   }
 `);

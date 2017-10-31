@@ -23,7 +23,9 @@ export const viewerType = new GraphQLObjectType({
         const widgetData = new WidgetData(baseUrl);
         return widgetData.all().then(widgets => {
           const widgetModels = widgets.map(w => Object.assign(new Widget(), w));
-          return connectionFromArray(widgetModels, args);
+          const conn = connectionFromArray(widgetModels, args);
+          conn.totalCount = widgetModels.length;
+          return conn;
         });
       },
     },

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 36f398d37a888440e73d8d250f4e9978
+ * @relayHash 4aef9da2654f8575fbabb98d811754ae
  */
 
 /* eslint-disable */
@@ -33,6 +33,7 @@ fragment widgetTable_viewer on Viewer {
         ...widgetViewRow_widget
       }
     }
+    totalCount
   }
 }
 
@@ -175,6 +176,13 @@ const batch /*: ConcreteBatch*/ = {
                   }
                 ],
                 "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "totalCount",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -184,7 +192,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query widgetHomeQuery {\n  viewer {\n    id\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        ...widgetViewRow_widget\n      }\n    }\n  }\n}\n\nfragment widgetViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
+  "text": "query widgetHomeQuery {\n  viewer {\n    id\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        ...widgetViewRow_widget\n      }\n    }\n    totalCount\n  }\n}\n\nfragment widgetViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
 };
 
 module.exports = batch;

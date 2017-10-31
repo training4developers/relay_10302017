@@ -7,6 +7,14 @@ export const {
   connectionType: widgetConnectionType,
   edgeType: widgetEdgeType
 } = connectionDefinitions({
+  
   name: 'Widgets',
   nodeType: widgetType,
+
+  connectionFields: () => ({
+    totalCount: {
+      type: GraphQLInt,
+    },
+  }),
+
 });

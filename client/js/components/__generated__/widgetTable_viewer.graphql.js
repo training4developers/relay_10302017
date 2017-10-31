@@ -15,6 +15,7 @@ export type widgetTable_viewer = {|
         +id: string;
       |};
     |}>;
+    +totalCount: ?number;
   |};
 |};
 */
@@ -66,6 +67,13 @@ const fragment /*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ],
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "totalCount",
           "storageKey": null
         }
       ],

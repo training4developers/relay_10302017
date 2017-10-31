@@ -13,11 +13,6 @@ export type widgetTable_viewer = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string;
-        +name: ?string;
-        +description: ?string;
-        +color: ?string;
-        +size: ?string;
-        +quantity: ?number;
       |};
     |}>;
   |};
@@ -63,39 +58,9 @@ const fragment /*: ConcreteFragment*/ = {
                   "storageKey": null
                 },
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "name",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "description",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "color",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "size",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "quantity",
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "widgetViewRow_widget",
+                  "args": null
                 }
               ],
               "storageKey": null

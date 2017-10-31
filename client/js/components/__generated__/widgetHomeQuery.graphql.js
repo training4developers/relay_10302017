@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3629e54ece5fa6bb6ff32ff13cdd0ac5
+ * @relayHash 36f398d37a888440e73d8d250f4e9978
  */
 
 /* eslint-disable */
@@ -30,14 +30,19 @@ fragment widgetTable_viewer on Viewer {
     edges {
       node {
         id
-        name
-        description
-        color
-        size
-        quantity
+        ...widgetViewRow_widget
       }
     }
   }
+}
+
+fragment widgetViewRow_widget on Widget {
+  id
+  name
+  description
+  color
+  size
+  quantity
 }
 */
 
@@ -179,7 +184,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query widgetHomeQuery {\n  viewer {\n    id\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
+  "text": "query widgetHomeQuery {\n  viewer {\n    id\n    ...widgetTable_viewer\n  }\n}\n\nfragment widgetTable_viewer on Viewer {\n  widgets {\n    edges {\n      node {\n        id\n        ...widgetViewRow_widget\n      }\n    }\n  }\n}\n\nfragment widgetViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
 };
 
 module.exports = batch;

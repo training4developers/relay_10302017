@@ -1,6 +1,7 @@
 import * as React from 'react';
-
 import { createFragmentContainer, graphql } from 'react-relay';
+
+import { WidgetViewRowContainer } from './widget-view-row';
 
 export class WidgetTable extends React.Component {
 
@@ -18,16 +19,7 @@ export class WidgetTable extends React.Component {
       </thead>
       <tbody>
         {this.props.viewer.widgets.edges.map(
-          ({ node: { id, name, description, color, size, quantity } }) => (
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{description}</td>
-              <td>{color}</td>
-              <td>{size}</td>
-              <td>{quantity}</td>
-              <td></td>
-            </tr>
-          )
+          ({ node: widget }) => <WidgetViewRowContainer key={widget.id} widget={widget} />
         )}
       </tbody>
       <tfoot>
@@ -45,11 +37,7 @@ export const WidgetTableContainer = createFragmentContainer(WidgetTable, graphql
       edges {
         node {
           id
-          name
-          description
-          color
-          size
-          quantity
+          ...widgetViewRow_widget
         }
       }
     }

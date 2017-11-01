@@ -28,7 +28,6 @@ export class WidgetTablePage extends React.Component {
             }
           }
         `}
-        variables={{}}
         render={ ({ error, props, retry }) => {
 
 

@@ -1,4 +1,4 @@
-import { GraphQLObjectType } from 'graphql';
+import { GraphQLObjectType, GraphQLString } from 'graphql';
 import { globalIdField, connectionArgs, connectionFromArray } from 'graphql-relay';
 
 import { widgetConnectionType } from '../connections/widgets';
@@ -8,6 +8,7 @@ import { CarData } from '../models/car-data';
 import { Widget, Viewer, Car } from '../models/graphql-models';
 import { nodeInterface } from '../utils/node-definitions';
 import { registerType } from '../utils/resolve-type';
+import { widgetType } from './widget-type';
 
 export const viewerType = new GraphQLObjectType({
 
@@ -27,6 +28,19 @@ export const viewerType = new GraphQLObjectType({
           conn.totalCount = widgetModels.length;
           return conn;
         });
+      },
+    },
+    widget: {
+      type: widgetType,
+      description: 'get one widgets',
+      args: {
+        widgetId: {
+          type: GraphQLString
+        }
+      },
+      resolve: (_, { widgetId }, { baseUrl }) => {
+        const widgetData = new WidgetData(baseUrl);
+        return widgetData.one(widgetId);
       },
     },
     cars: {

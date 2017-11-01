@@ -19,12 +19,14 @@ export class CarTable extends React.Component {
       </thead>
       <tbody>
         {this.props.viewer.cars.edges.map(
-          ({ node: car }) => (<CarViewRowContainer key={car.id} car={car} carMake={car} />)
+          ({ node: car }) => (<CarViewRowContainer
+            key={car.id} car={car} carMake={car}
+            onDeleteCar={this.props.onDeleteCar} />)
         )}
       </tbody>
       <tfoot>
         <tr>
-          <td colSpan="6">Car Count: {this.props.viewer.cars.edges.length}</td>
+          <td colSpan="6">Car Count: {this.props.viewer.cars.totalCount}</td>
         </tr>
       </tfoot>
     </table>;
@@ -33,13 +35,14 @@ export class CarTable extends React.Component {
 
 export const CarTableContainer = createFragmentContainer(CarTable, graphql`
   fragment carTable_viewer on Viewer {
-    cars {
+    cars(first: 100) @connection(key: "CarTable_cars") {
       edges {
         node {
           id
           ...carViewRow_car
         }
       }
+      totalCount
     }
   }
 `);

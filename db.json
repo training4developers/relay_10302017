@@ -15,6 +15,14 @@
       "color": "red",
       "price": 123,
       "id": 2
+    },
+    {
+      "make": "a",
+      "model": "a",
+      "year": 1900,
+      "color": "a",
+      "price": 0,
+      "id": 3
     }
   ],
   "owners": [

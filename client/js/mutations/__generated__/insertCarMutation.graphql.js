@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8c035b131454c8688e81dfb067dc5b3a
+ * @relayHash 1c6248863a66761b2b8088b528d56eee
  */
 
 /* eslint-disable */
@@ -9,36 +9,36 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type insertWidgetMutationVariables = {|
+export type insertCarMutationVariables = {|
   input: {
-    widget?: ?{
-      name?: ?string;
-      description?: ?string;
+    car?: ?{
+      make?: ?string;
+      model?: ?string;
+      year?: ?number;
       color?: ?string;
-      size?: ?string;
-      quantity?: ?number;
+      price?: ?number;
     };
     clientMutationId?: ?string;
   };
 |};
 
-export type insertWidgetMutationResponse = {|
-  +insertWidget: ?{|
+export type insertCarMutationResponse = {|
+  +insertCar: ?{|
     +viewer: ?{|
       +id: string;
-      +widgets: ?{|
+      +cars: ?{|
         +totalCount: ?number;
       |};
     |};
-    +widgetEdge: ?{|
+    +carEdge: ?{|
       +cursor: string;
       +node: ?{|
         +id: string;
-        +name: ?string;
-        +description: ?string;
+        +make: ?string;
+        +model: ?string;
+        +year: ?number;
         +color: ?string;
-        +size: ?string;
-        +quantity: ?number;
+        +price: ?number;
       |};
     |};
   |};
@@ -47,25 +47,25 @@ export type insertWidgetMutationResponse = {|
 
 
 /*
-mutation insertWidgetMutation(
-  $input: InsertWidgetInput!
+mutation insertCarMutation(
+  $input: InsertCarInput!
 ) {
-  insertWidget(input: $input) {
+  insertCar(input: $input) {
     viewer {
       id
-      widgets {
+      cars {
         totalCount
       }
     }
-    widgetEdge {
+    carEdge {
       cursor
       node {
         id
-        name
-        description
+        make
+        model
+        year
         color
-        size
-        quantity
+        price
       }
     }
   }
@@ -78,13 +78,13 @@ const batch /*: ConcreteBatch*/ = {
       {
         "kind": "LocalArgument",
         "name": "input",
-        "type": "InsertWidgetInput!",
+        "type": "InsertCarInput!",
         "defaultValue": null
       }
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "insertWidgetMutation",
+    "name": "insertCarMutation",
     "selections": [
       {
         "kind": "LinkedField",
@@ -94,11 +94,11 @@ const batch /*: ConcreteBatch*/ = {
             "kind": "Variable",
             "name": "input",
             "variableName": "input",
-            "type": "InsertWidgetInput!"
+            "type": "InsertCarInput!"
           }
         ],
-        "concreteType": "InsertWidgetPayload",
-        "name": "insertWidget",
+        "concreteType": "InsertCarPayload",
+        "name": "insertCar",
         "plural": false,
         "selections": [
           {
@@ -120,8 +120,8 @@ const batch /*: ConcreteBatch*/ = {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
-                "concreteType": "WidgetsConnection",
-                "name": "widgets",
+                "concreteType": "CarsConnection",
+                "name": "cars",
                 "plural": false,
                 "selections": [
                   {
@@ -141,8 +141,8 @@ const batch /*: ConcreteBatch*/ = {
             "kind": "LinkedField",
             "alias": null,
             "args": null,
-            "concreteType": "WidgetsEdge",
-            "name": "widgetEdge",
+            "concreteType": "CarsEdge",
+            "name": "carEdge",
             "plural": false,
             "selections": [
               {
@@ -156,7 +156,7 @@ const batch /*: ConcreteBatch*/ = {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
-                "concreteType": "Widget",
+                "concreteType": "Car",
                 "name": "node",
                 "plural": false,
                 "selections": [
@@ -171,14 +171,21 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "name",
+                    "name": "make",
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "description",
+                    "name": "model",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "year",
                     "storageKey": null
                   },
                   {
@@ -192,14 +199,7 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "size",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "quantity",
+                    "name": "price",
                     "storageKey": null
                   }
                 ],
@@ -217,18 +217,18 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "insertWidgetMutation",
+  "name": "insertCarMutation",
   "query": {
     "argumentDefinitions": [
       {
         "kind": "LocalArgument",
         "name": "input",
-        "type": "InsertWidgetInput!",
+        "type": "InsertCarInput!",
         "defaultValue": null
       }
     ],
     "kind": "Root",
-    "name": "insertWidgetMutation",
+    "name": "insertCarMutation",
     "operation": "mutation",
     "selections": [
       {
@@ -239,11 +239,11 @@ const batch /*: ConcreteBatch*/ = {
             "kind": "Variable",
             "name": "input",
             "variableName": "input",
-            "type": "InsertWidgetInput!"
+            "type": "InsertCarInput!"
           }
         ],
-        "concreteType": "InsertWidgetPayload",
-        "name": "insertWidget",
+        "concreteType": "InsertCarPayload",
+        "name": "insertCar",
         "plural": false,
         "selections": [
           {
@@ -265,8 +265,8 @@ const batch /*: ConcreteBatch*/ = {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
-                "concreteType": "WidgetsConnection",
-                "name": "widgets",
+                "concreteType": "CarsConnection",
+                "name": "cars",
                 "plural": false,
                 "selections": [
                   {
@@ -286,8 +286,8 @@ const batch /*: ConcreteBatch*/ = {
             "kind": "LinkedField",
             "alias": null,
             "args": null,
-            "concreteType": "WidgetsEdge",
-            "name": "widgetEdge",
+            "concreteType": "CarsEdge",
+            "name": "carEdge",
             "plural": false,
             "selections": [
               {
@@ -301,7 +301,7 @@ const batch /*: ConcreteBatch*/ = {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
-                "concreteType": "Widget",
+                "concreteType": "Car",
                 "name": "node",
                 "plural": false,
                 "selections": [
@@ -316,14 +316,21 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "name",
+                    "name": "make",
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "description",
+                    "name": "model",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "year",
                     "storageKey": null
                   },
                   {
@@ -337,14 +344,7 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
-                    "name": "size",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "quantity",
+                    "name": "price",
                     "storageKey": null
                   }
                 ],
@@ -358,7 +358,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "mutation insertWidgetMutation(\n  $input: InsertWidgetInput!\n) {\n  insertWidget(input: $input) {\n    viewer {\n      id\n      widgets {\n        totalCount\n      }\n    }\n    widgetEdge {\n      cursor\n      node {\n        id\n        name\n        description\n        color\n        size\n        quantity\n      }\n    }\n  }\n}\n"
+  "text": "mutation insertCarMutation(\n  $input: InsertCarInput!\n) {\n  insertCar(input: $input) {\n    viewer {\n      id\n      cars {\n        totalCount\n      }\n    }\n    carEdge {\n      cursor\n      node {\n        id\n        make\n        model\n        year\n        color\n        price\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

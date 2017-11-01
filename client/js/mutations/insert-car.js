@@ -3,23 +3,23 @@ import { ConnectionHandler } from 'relay-runtime';
 
 /* is this needed */
 const mutation = graphql`
-mutation insertWidgetMutation($input: InsertWidgetInput!) {
-  insertWidget(input: $input) {
+mutation insertCarMutation($input: InsertCarInput!) {
+  insertCar(input: $input) {
     viewer {
       id
-      widgets {
+      cars {
         totalCount
       }
     }
-    widgetEdge {
+    carEdge {
       cursor
       node {
         id
-        name
-        description
+        make
+        model
+        year
         color
-        size
-        quantity
+        price
       }
     }
   }
@@ -27,11 +27,11 @@ mutation insertWidgetMutation($input: InsertWidgetInput!) {
 `;
 
 // performs the actual update to the graph on the client
-const sharedUpdater = (source, widgetEdge, viewerId, totalCount) => {
+const sharedUpdater = (source, carEdge, viewerId, totalCount) => {
 
   const viewerProxy = source.get(viewerId);
-  const conn = ConnectionHandler.getConnection(viewerProxy, 'WidgetTable_widgets');
-  ConnectionHandler.insertEdgeAfter(conn, widgetEdge);
+  const conn = ConnectionHandler.getConnection(viewerProxy, 'CarTable_cars');
+  ConnectionHandler.insertEdgeAfter(conn, carEdge);
 
   // update the total count
   if (!totalCount) {
@@ -42,7 +42,7 @@ const sharedUpdater = (source, widgetEdge, viewerId, totalCount) => {
 
 let clientMutationId = 0;
 
-export const insertWidget = (environment, viewerId, widget) => {
+export const insertCar = (environment, viewerId, car) => {
 
   return new Promise((resolve, reject) => {
 
@@ -52,7 +52,7 @@ export const insertWidget = (environment, viewerId, widget) => {
       // query variables for the mutation defined above
       variables: {
         input: {
-          widget,
+          car,
           clientMutationId: String(clientMutationId++),
         },
       },
@@ -61,37 +61,37 @@ export const insertWidget = (environment, viewerId, widget) => {
       // added during the optimistic update
       updater: source => {
 
-        const payload = source.getRootField('insertWidget');
+        const payload = source.getRootField('insertCar');
         if (!payload) {
           return;
         }
-        const widgetEdge = payload.getLinkedRecord('widgetEdge');
+        const carEdge = payload.getLinkedRecord('carEdge');
         const totalCount = payload.getLinkedRecord('viewer')
-          .getLinkedRecord('widgets').getValue('totalCount');
+          .getLinkedRecord('cars').getValue('totalCount');
 
-        sharedUpdater(source, widgetEdge, viewerId, totalCount);
+        sharedUpdater(source, carEdge, viewerId, totalCount);
       },
 
       // runs before the server operation, and makes it appear as though the
       // was saved
       optimisticUpdater: source => {
 
-        const nodeId = 'client:newWidget:' + String(clientMutationId++);
+        const nodeId = 'client:newCar:' + String(clientMutationId++);
         // does not care about the name of the second argument
         const node = source.create(nodeId, 'node');
         node.setValue(nodeId, 'id');
-        node.setValue(widget.name, 'name');
-        node.setValue(widget.description, 'description');
-        node.setValue(widget.color, 'color');
-        node.setValue(widget.size, 'size');
-        node.setValue(widget.quantity, 'quantity');
+        node.setValue(car.make, 'make');
+        node.setValue(car.model, 'model');
+        node.setValue(car.year, 'year');
+        node.setValue(car.color, 'color');
+        node.setValue(car.price, 'price');
 
         const edgeId = 'client:newEdge:' + String(clientMutationId++);
         // does not care about the name of the second argument
-        const widgetEdge = source.create(edgeId, 'widgetEdge');
-        widgetEdge.setLinkedRecord(node, 'node');
+        const carEdge = source.create(edgeId, 'carEdge');
+        carEdge.setLinkedRecord(node, 'node');
 
-        sharedUpdater(source, widgetEdge, viewerId);
+        sharedUpdater(source, carEdge, viewerId);
       },
 
       // the success function when mutation is successful

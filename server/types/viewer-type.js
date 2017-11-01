@@ -37,7 +37,10 @@ export const viewerType = new GraphQLObjectType({
         const carData = new CarData(baseUrl);
         return carData.all().then(cars => {
           const carModels = cars.map(c => Object.assign(new Car(), c));
-          return connectionFromArray(carModels, args);
+          const conn = connectionFromArray(carModels, args);
+          conn.totalCount = carModels.length;
+          return conn;
+
         });
       },
     },

@@ -53,7 +53,7 @@ export class WidgetForm extends React.Component {
       </div>
       <div>
         <label htmlFor="quantity-input">Quantity</label>
-        <input type="text" id="quantity-input" name="quantity"
+        <input type="number" id="quantity-input" name="quantity"
           value={this.state.quantity} onChange={this.onChange} />
       </div>
       <button type="button" onClick={this.onClick}>Save Widget</button>

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 000c7b656c9600e53bbea5315c66afd3
+ * @relayHash 13ef9f66b3db471d8f7cdb8d1d1694b2
  */
 
 /* eslint-disable */
@@ -26,12 +26,21 @@ query carHomeQuery {
 }
 
 fragment carTable_viewer on Viewer {
-  cars {
+  cars(first: 100) {
     edges {
       node {
         id
         ...carViewRow_car
+        __typename
       }
+      cursor
+    }
+    totalCount
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
     }
   }
 }
@@ -107,7 +116,14 @@ const batch /*: ConcreteBatch*/ = {
           {
             "kind": "LinkedField",
             "alias": null,
-            "args": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 100,
+                "type": "Int"
+              }
+            ],
             "concreteType": "CarsConnection",
             "name": "cars",
             "plural": false,
@@ -169,22 +185,98 @@ const batch /*: ConcreteBatch*/ = {
                         "args": null,
                         "name": "price",
                         "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "__typename",
+                        "storageKey": null
                       }
                     ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "cursor",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "totalCount",
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "PageInfo",
+                "name": "pageInfo",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "endCursor",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "hasNextPage",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "hasPreviousPage",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "startCursor",
                     "storageKey": null
                   }
                 ],
                 "storageKey": null
               }
             ],
-            "storageKey": null
+            "storageKey": "cars{\"first\":100}"
+          },
+          {
+            "kind": "LinkedHandle",
+            "alias": null,
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "first",
+                "value": 100,
+                "type": "Int"
+              }
+            ],
+            "handle": "connection",
+            "name": "cars",
+            "key": "CarTable_cars",
+            "filters": null
           }
         ],
         "storageKey": null
       }
     ]
   },
-  "text": "query carHomeQuery {\n  viewer {\n    id\n    ...carTable_viewer\n  }\n}\n\nfragment carTable_viewer on Viewer {\n  cars {\n    edges {\n      node {\n        id\n        ...carViewRow_car\n      }\n    }\n  }\n}\n\nfragment carViewRow_car on Car {\n  id\n  make\n  model\n  year\n  color\n  price\n}\n"
+  "text": "query carHomeQuery {\n  viewer {\n    id\n    ...carTable_viewer\n  }\n}\n\nfragment carTable_viewer on Viewer {\n  cars(first: 100) {\n    edges {\n      node {\n        id\n        ...carViewRow_car\n        __typename\n      }\n      cursor\n    }\n    totalCount\n    pageInfo {\n      endCursor\n      hasNextPage\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment carViewRow_car on Car {\n  id\n  make\n  model\n  year\n  color\n  price\n}\n"
 };
 
 module.exports = batch;

@@ -2,30 +2,30 @@ import { commitMutation, graphql } from 'react-relay';
 import { ConnectionHandler } from 'relay-runtime';
 
 const mutation = graphql`
-  mutation deleteWidgetMutation($input: DeleteWidgetInput!) {
-    deleteWidget(input: $input) {
+  mutation deleteCarMutation($input: DeleteCarInput!) {
+    deleteCar(input: $input) {
       viewer {
         id
-        widgets {
+        cars {
           totalCount
         }
       }
-      widget {
+      car {
         id
-        name
-        description
+        make
+        model
+        year
         color
-        size
-        quantity
+        price
       }
     }
   }
 `;
 
-const sharedUpdater = (source, viewerId, widgetId, totalCount) => {
+const sharedUpdater = (source, viewerId, carId, totalCount) => {
   const viewerProxy = source.get(viewerId);
-  const conn = ConnectionHandler.getConnection(viewerProxy, 'WidgetTable_widgets');
-  ConnectionHandler.deleteNode(conn, widgetId);
+  const conn = ConnectionHandler.getConnection(viewerProxy, 'CarTable_cars');
+  ConnectionHandler.deleteNode(conn, carId);
 
   // update the total count
   if (!totalCount) {
@@ -36,7 +36,7 @@ const sharedUpdater = (source, viewerId, widgetId, totalCount) => {
 
 let clientMutationId = 0;
 
-export const deleteWidget = (environment, viewerId, widgetId) => {
+export const deleteCar = (environment, viewerId, carId) => {
 
   return new Promise((resolve, reject) => {
     
@@ -46,24 +46,24 @@ export const deleteWidget = (environment, viewerId, widgetId) => {
         mutation,
         variables: {
           input: {
-            widgetId,
+            carId,
             clientMutationId: String(clientMutationId++),
           },
         },
         updater: source => {
-          const payload = source.getRootField('deleteWidget');
+          const payload = source.getRootField('deleteCar');
           if (!payload) {
             return;
           }
-          const deletedWidget = payload.getLinkedRecord('widget');
+          const deletedCar = payload.getLinkedRecord('car');
 
           const totalCount = payload.getLinkedRecord('viewer')
-            .getLinkedRecord('widgets').getValue('totalCount');
+            .getLinkedRecord('cars').getValue('totalCount');
           
-          sharedUpdater(source, viewerId, deletedWidget.getValue('id'), totalCount);
+          sharedUpdater(source, viewerId, deletedCar.getValue('id'), totalCount);
         },
         optimisticUpdater: source => {
-          sharedUpdater(source, viewerId, widgetId);
+          sharedUpdater(source, viewerId, carId);
         },
         onCompleted: (results, errors) => {
           if (errors) {

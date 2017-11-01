@@ -15,6 +15,7 @@ export type carTable_viewer = {|
         +id: string;
       |};
     |}>;
+    +totalCount: ?number;
   |};
 |};
 */
@@ -23,15 +24,26 @@ export type carTable_viewer = {|
 const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": null,
+        "cursor": null,
+        "direction": "forward",
+        "path": [
+          "cars"
+        ]
+      }
+    ]
+  },
   "name": "carTable_viewer",
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": null,
+      "alias": "cars",
       "args": null,
       "concreteType": "CarsConnection",
-      "name": "cars",
+      "name": "__CarTable_cars_connection",
       "plural": false,
       "selections": [
         {
@@ -66,6 +78,13 @@ const fragment /*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ],
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "totalCount",
           "storageKey": null
         }
       ],

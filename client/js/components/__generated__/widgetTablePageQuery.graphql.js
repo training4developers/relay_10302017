@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 177110c7351aa3d17a6eae1bd0b640ec
+ * @relayHash 9bebdb18c77262439d6b8605e6d64125
  */
 
 /* eslint-disable */
@@ -9,7 +9,7 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type widgetHomeQueryResponse = {|
+export type widgetTablePageQueryResponse = {|
   +viewer: ?{|
     +id: string;
   |};
@@ -18,11 +18,16 @@ export type widgetHomeQueryResponse = {|
 
 
 /*
-query widgetHomeQuery {
+query widgetTablePageQuery {
   viewer {
     id
-    ...paginatedWidgetTable_viewer
+    ...widgetTableHome_viewer
   }
+}
+
+fragment widgetTableHome_viewer on Viewer {
+  id
+  ...paginatedWidgetTable_viewer
 }
 
 fragment paginatedWidgetTable_viewer on Viewer {
@@ -60,7 +65,7 @@ const batch /*: ConcreteBatch*/ = {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "widgetHomeQuery",
+    "name": "widgetTablePageQuery",
     "selections": [
       {
         "kind": "LinkedField",
@@ -79,7 +84,7 @@ const batch /*: ConcreteBatch*/ = {
           },
           {
             "kind": "FragmentSpread",
-            "name": "paginatedWidgetTable_viewer",
+            "name": "widgetTableHome_viewer",
             "args": null
           }
         ],
@@ -91,11 +96,11 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "widgetHomeQuery",
+  "name": "widgetTablePageQuery",
   "query": {
     "argumentDefinitions": [],
     "kind": "Root",
-    "name": "widgetHomeQuery",
+    "name": "widgetTablePageQuery",
     "operation": "query",
     "selections": [
       {
@@ -276,7 +281,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query widgetHomeQuery {\n  viewer {\n    id\n    ...paginatedWidgetTable_viewer\n  }\n}\n\nfragment paginatedWidgetTable_viewer on Viewer {\n  widgets(first: 3) {\n    edges {\n      node {\n        id\n        ...widgetViewRow_widget\n        __typename\n      }\n      cursor\n    }\n    totalCount\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment widgetViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
+  "text": "query widgetTablePageQuery {\n  viewer {\n    id\n    ...widgetTableHome_viewer\n  }\n}\n\nfragment widgetTableHome_viewer on Viewer {\n  id\n  ...paginatedWidgetTable_viewer\n}\n\nfragment paginatedWidgetTable_viewer on Viewer {\n  widgets(first: 3) {\n    edges {\n      node {\n        id\n        ...widgetViewRow_widget\n        __typename\n      }\n      cursor\n    }\n    totalCount\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n\nfragment widgetViewRow_widget on Widget {\n  id\n  name\n  description\n  color\n  size\n  quantity\n}\n"
 };
 
 module.exports = batch;

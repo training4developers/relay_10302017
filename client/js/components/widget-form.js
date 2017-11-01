@@ -21,12 +21,13 @@ export class WidgetForm extends React.Component {
         ? Number(e.target.value)
         : e.target.value,
     });
-  } 
+  };
 
   onClick = () => {
-    this.props.onSubmitWidget({ ...this.state });
-    this.setState(this.getInitialState());
-  }
+    this.props.onSubmitWidget({ ...this.state }).then(() => {
+      this.props.onShowWidgetTable();
+    });
+  };
 
   render() {
 

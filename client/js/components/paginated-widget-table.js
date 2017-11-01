@@ -57,6 +57,10 @@ export class WidgetTable extends React.Component {
     }
   };
 
+  createWidget = () => {
+    this.props.onCreateWidget();
+  }
+
   render() {
 
     return <div>
@@ -90,7 +94,10 @@ export class WidgetTable extends React.Component {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="6">
+            <td colSpan="2">
+              <button type="button" onClick={this.createWidget}>Create Widget</button>
+            </td>
+            <td colSpan="4">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ textAlign: 'right', width:'100%' }}>
                   {do {

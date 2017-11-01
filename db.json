@@ -142,10 +142,18 @@
     {
       "name": "a",
       "description": "a",
-      "color": "aa",
+      "color": "a",
       "size": "a",
       "quantity": 0,
       "id": 12
+    },
+    {
+      "name": "b",
+      "description": "b",
+      "color": "b",
+      "size": "b",
+      "quantity": 0,
+      "id": 13
     }
   ],
   "people": [

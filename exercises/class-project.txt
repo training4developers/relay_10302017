@@ -1,0 +1,16 @@
+Group Project
+
+Time: Noon to 3:45pm
+
+Presentations: 3:45pm until done...
+
+Groups of 3
+
+Car Tool
+
+- Move car form to its own page.
+- Add edit row and updating to the table. Examples of the update mutation (server and client) are available in the class respository.
+- Add pagination to the car table.
+- Add the bottom of the car table display a total value of the car inventory (using price) at the bottom of the table. Be sure to update after add/delete/update operations.
+- Configure make, model & color to be drop downs populated from GraphQL with Relay. Do not use enum types. Simply return a list from the GraphQL server, and use the value to save a string value on the car type.
+

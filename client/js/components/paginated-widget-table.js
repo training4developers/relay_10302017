@@ -92,17 +92,17 @@ export class WidgetTable extends React.Component {
           <tr>
             <td colSpan="6">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div style={{ textAlign: 'left' }}>
+                <div style={{ textAlign: 'right', width:'100%' }}>
                   {do {
                     if (this.state.currentPage > 0) {
                       <button type="button" onClick={this.loadPrev}>Prev</button>;
                     }
                   }}
                 </div>
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: 'center', width:'100%' }}>
                   {this.state.currentPage + 1} of { Math.ceil(this.props.viewer.widgets.totalCount / this.state.pageLength) } pages
                 </div>
-                <div style={{ textAlign: 'right' }}>
+                <div style={{ textAlign: 'left', width:'100%' }}>
                   {do {
                     if (this.props.viewer.widgets.pageInfo.hasNextPage
                       || this.state.currentPage < this.state.lastPageLoaded) {

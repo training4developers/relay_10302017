@@ -2,7 +2,8 @@ import * as React from 'react';
 import { QueryRenderer, graphql } from 'react-relay';
 
 import { environment } from '../environment';
-import { WidgetTableContainer } from './widget-table';
+// import { WidgetTableContainer } from './widget-table';
+import { PaginatedWidgetTableContainer } from './paginated-widget-table';
 import { WidgetForm } from './widget-form';
 import { insertWidget as relayInsertWidget } from '../mutations/insert-widget';
 import { deleteWidget as relayDeleteWidget } from '../mutations/delete-widget';
@@ -22,7 +23,7 @@ export class WidgetHome extends React.Component {
           query widgetHomeQuery {
             viewer {
               id
-              ...widgetTable_viewer
+              ...paginatedWidgetTable_viewer
             }
           }
         `}
@@ -52,7 +53,7 @@ export class WidgetHome extends React.Component {
             </div>;
           } else if (props) {
             return <div>
-              <WidgetTableContainer viewer={props.viewer}
+              <PaginatedWidgetTableContainer viewer={props.viewer}
                 onDeleteWidget={reactDeleteWidget} />
               <WidgetForm onSubmitWidget={reactInsertWidget} />
             </div>;
